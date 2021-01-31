@@ -86,7 +86,7 @@ function Post() {
                 <div className="col-md-6 card">
                   <div className="row">
                     <div className="col-md-2">
-                      <img src={eachItem.profileimg} alt="profile pic" style={{ width: 40, height: 40 }} />
+                      <img src={eachItem.profileimg} alt="profile pic" style={{ width: 40, height: 40, borderRadius:"100%" }} />
                     </div>
                     <div className="col-md-10">
                       <p className="name">{eachItem.name}</p>
