@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -7,8 +7,19 @@ import { Button, Col, Form, Container } from "react-bootstrap";
 
 function Post() {
   const [data, updateval] = useState([]);
+  useEffect(() => {
+    let userData = localStorage.getItem('data')
+    if (userData) {
+      updateval(JSON.parse(userData));
+    }
+  }, [])
+  useEffect(() => {
+    localStorage.setItem('data', JSON.stringify(data))
+  })
+
   function add(event) {
     event.preventDefault();
+
 
     let name = document.getElementById('txtname').value;
     let profileimg = document.getElementById('profileimg').value;
@@ -86,7 +97,7 @@ function Post() {
                 <div className="col-md-6 card">
                   <div className="row">
                     <div className="col-md-2">
-                      <img src={eachItem.profileimg} alt="profile pic" style={{ width: 40, height: 40, borderRadius:"100%" }} />
+                      <img src={eachItem.profileimg} alt="profile pic" style={{ width: 40, height: 40, borderRadius: "100%" }} />
                     </div>
                     <div className="col-md-10">
                       <p className="name">{eachItem.name}</p>
